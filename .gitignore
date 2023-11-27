@@ -1,0 +1,10 @@
+# Folders
+*__pycache__
+*.ipynb_checkpoints
+results
+
+# ML
+*.ckpt
+*.bin
+*.gz
+*.csv

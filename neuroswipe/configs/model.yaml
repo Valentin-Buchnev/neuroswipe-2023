@@ -1,0 +1,27 @@
+# Dataset
+dataset: &dataset !DataloaderTrain
+  batch_size: 100
+
+# Optimizers
+optimizers: &optimizers
+  weight_optimizer:
+    name: Adam
+    params:
+      lr: 0.001
+      weight_decay: 1e-4
+    scheduler:
+      name: CosineAnnealingLR
+      params:
+        T_max: 285000
+
+training_loop: &training_loop !TrainingLoop
+  dataset: *dataset
+  loss: !CosineEmbeddingLoss
+
+task: !Task
+  training_loop: *training_loop
+  epochs: 100
+  model_arch: model
+  optimizers: *optimizers
+  model_saver:
+    save_last: true
